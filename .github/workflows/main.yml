@@ -31,7 +31,7 @@ jobs:
         echo "step level 2: $STEP_LEVEL_2"
         echo "step level 3: $STEP_LEVEL_3"
 
-        randomvalue="swm$(echo %RANDOM)"
+        randomvalue="swm$(echo $RANDOM)"
 
         echo "STEP_VALUE=$randomvalue" >> $GITHUB_ENV
 
