@@ -14,8 +14,8 @@ jobs:
       run: |
         curl -X POST 'https://webexapis.com/v1/messages' \
           -H 'Authorization: Baarer ${{ secrets.WEBEX_TOKEN }}' \
-          -H 'Content-type: application/json' \
+          -H 'Content-Type: application/json' \
           -d '{
             "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
-            "text" : "메세지입니다."
+            "text" : "1123"
           }'
