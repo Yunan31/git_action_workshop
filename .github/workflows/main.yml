@@ -52,6 +52,8 @@ jobs:
 
         echo ${{ env.STEP_VALUE }}
 
+        echo ${{ secrets.SECRET_KEY }}
+
     - name: Check environment variables 3
       shell: bash
       env:
