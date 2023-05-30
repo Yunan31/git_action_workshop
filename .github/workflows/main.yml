@@ -1,54 +1,54 @@
-# This is a basic workflow to help you get started with Actions
+name: 'SWM GitHub Actions Basic'
 
-name: "action TEST"
-
-# Controls when the workflow will run
 on: push
-# push:
-#   branch:
-#     - main
 
-env: |
-  GLOBAL_LEVEL: "GLOBAL ENV VALUE"
+env:
+  WORKFLOW_LEVEL: "This value comes from the WORKFLOW level"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   first-job:
-    name: "first-job"
-    # The type of runner that the job will run on
+    name: 'First Job'
+
     runs-on: ubuntu-latest
 
-    env: |
-      JOB_LEVEL_1: "JOB LEVEL VALUE 1"
-      JOB_LEVEL_2: "JOB LEVEL VALUE 2"
+    env:
+      JOB_LEVEL: "This value comes from the JOB level"
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      env: |
-        STEP_LEVEL_1: "STEP LEVEL VALUE 1"
-        STEP_LEVEL_2: "STEP LEVEL VALUE 2"
+    - name: Say Hello World
+      shell: bash
+      run: |
+        echo "Hello World"
 
-      # Runs a single command using the runners shell
-      - name: echo Hello world
-        shell: bash
-        run: |
-          echo "Hello World from step"
-          echo "GLOBAL: $env.GLOBAL_LEVEL"
-          echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-          echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-          echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-          echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
+    - name: Check environment variables 1
+      shell: bash
+      env:
+        STEP_LEVEL_1: "This value comes from the STEP level 1"
+      run: |
+        echo "workflow level: $WORKFLOW_LEVEL"
+        echo "job level: $JOB_LEVEL"
+        echo "step level 1: $STEP_LEVEL_1"
+        echo "step level 2: $STEP_LEVEL_2"
+        echo "step level 3: $STEP_LEVEL_3"
 
-      - name: echo Hello world 2
-        shell: bash
-        run: |
-          echo "Hello World from step"
-          echo "GLOBAL: $env.GLOBAL_LEVEL"
-          echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-          echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-          echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-          echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
+    - name: Check environment variables 2
+      shell: pwsh
+      env:
+        STEP_LEVEL_2: "This value comes from the STEP level 2"
+      run: |
+        echo "workflow level: $env:WORKFLOW_LEVEL"
+        echo "job level: $env:JOB_LEVEL"
+        echo "step level 1: $env:STEP_LEVEL_1"
+        echo "step level 2: $env:STEP_LEVEL_2"
+        echo "step level 3: $env:STEP_LEVEL_3"
 
-      # Runs a set of commands using the runners shell
+    - name: Check environment variables 3
+      shell: bash
+      env:
+        STEP_LEVEL_3: "This value comes from the STEP level 3"
+      run: |
+        echo "workflow level: ${{ env.WORKFLOW_LEVEL }}"
+        echo "job level: ${{ env.JOB_LEVEL }}"
+        echo "step level 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "step level 2: ${{ env.STEP_LEVEL_2 }}"
+        echo "step level 3: ${{ env.STEP_LEVEL_3 }}"
