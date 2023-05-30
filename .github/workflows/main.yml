@@ -2,9 +2,6 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
-env:
-  WORKFLOW_LEVEL: "This value comes from the WORKFLOW level"
-
 jobs:
   build-test:
     name: 'build to test'
@@ -12,45 +9,13 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
-    - name: Say Hello World 1
+    - name: Send a message to webex space
       shell: bash
       run: |
-
-  deploy-dev:
-    name: 'deploy to dev'
-
-    needs:
-      - build-test
-
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name: Say Hello World 1
-      shell: bash
-      run: |
-
-  deploy-staging:
-    name: 'deploy to staging'
-
-    needs:
-      - deploy-dev
-
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name: Say Hello World 1
-      shell: bash
-      run: |
-
-  deploy-prod:
-    name: 'deploy to prod'
-
-    needs:
-      - deploy-dev
-
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name: Say Hello World 1
-      shell: bash
-      run: |
+        curl -X POST 'https://webexapis.com/v1/messages' \
+          -H 'Authorization: Bareer ${{ secrets.WEBEX_TOKEN }}' \
+          -H 'Comtent-type: application/json' \
+          -d "{
+            "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
+            "text" : "메세지입니다."
+          }"
