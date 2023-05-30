@@ -8,7 +8,7 @@ on: push
 #   branch:
 #     - main
 
-env:
+env: |
   GLOBAL_LEVEL: "GLOBAL ENV VALUE"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -19,14 +19,14 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    env:
+    env: |
       JOB_LEVEL_1: "JOB LEVEL VALUE 1"
       JOB_LEVEL_2: "JOB LEVEL VALUE 2"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      env:
+      env: |
         STEP_LEVEL_1: "STEP LEVEL VALUE 1"
         STEP_LEVEL_2: "STEP LEVEL VALUE 2"
 
