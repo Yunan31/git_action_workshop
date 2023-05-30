@@ -26,4 +26,8 @@ jobs:
         shell: bash
         run: echo "Hello World from step"
 
+      - name: echo Hello world 2
+        shell: bash
+        run: echo "Hello World from step"
+
       # Runs a set of commands using the runners shell
