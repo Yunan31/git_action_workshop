@@ -1,17 +1,26 @@
-name: Post Message to Webex Room JS Action
+name: 'SWM GitHub Actions Basic'
 
-on: 
-  push:
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: push
 
 jobs:
-  webex_message:
-    runs-on: ubuntu-latest
-    name: Send a Webex Notification
+  build-test:
+    name: 'build to test'
+
+    runs-on: 'ubuntu-latest'
+
     steps:
-      - name: Post Message to Webex Room
+    - name: Send a message to webex space
+      shell: bash
+      run: |
+        curl -X POST 'https://webexapis.com/v1/messages' \
+          -H 'Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}' \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
+            "text" : "1123"
+          }'
+
+    - name: Post Message to Webex Room
         uses: chrivand/action-webex-js@main
         env:
           WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
