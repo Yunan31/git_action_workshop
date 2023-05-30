@@ -50,9 +50,9 @@ jobs:
         echo "step level 2: $env:STEP_LEVEL_2"
         echo "step level 3: $env:STEP_LEVEL_3"
 
-        echo ${{ env.STEP_VALUE }}
+        echo "randomvalue: ${{ env.STEP_VALUE }}"
 
-        echo ${{ secrets.SECRET_KEY }}
+        echo "secret: ${{ secrets.SECRET_KEY }}"
 
     - name: Check environment variables 3
       shell: bash
