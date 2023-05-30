@@ -19,6 +19,9 @@ jobs:
   deploy-dev:
     name: 'deploy to dev'
 
+    needs:
+      - build-test
+
     runs-on: 'ubuntu-latest'
 
     steps:
@@ -29,6 +32,9 @@ jobs:
   deploy-staging:
     name: 'deploy to staging'
 
+    needs:
+      - deploy-dev
+
     runs-on: 'ubuntu-latest'
 
     steps:
@@ -36,8 +42,11 @@ jobs:
       shell: bash
       run: |
 
-  deploy-live:
-    name: 'deploy to live'
+  deploy-prod:
+    name: 'deploy to prod'
+
+    needs:
+      - deploy-dev
 
     runs-on: 'ubuntu-latest'
 
