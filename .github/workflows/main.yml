@@ -35,6 +35,8 @@ jobs:
 
         echo "STEP_VALUE=$randomvalue" >> $GITHUB_ENV
 
+        echo "::add-mask::$randomvalue"
+
 
 
     - name: Check environment variables 2
