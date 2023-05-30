@@ -6,29 +6,42 @@ env:
   WORKFLOW_LEVEL: "This value comes from the WORKFLOW level"
 
 jobs:
-  first-job:
-    name: 'First Job'
+  build-test:
+    name: 'build to test'
 
-    strategy:
-      matrix:
-        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
-        nodejs: [ '16', '18' ]
-
-    runs-on: ${{ matrix.os }}
-
-    env:
-      JOB_LEVEL: "This value comes from the JOB level"
+    runs-on: 'ubuntu-latest'
 
     steps:
-    - name: Say Hello World 1 - ${{ matrix.os }}
+    - name: Say Hello World 1
       shell: bash
       run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "Nodejs version: ${{ matrix.nodejs }}"
 
-    - name: Say Hello World 2 - ${{ matrix.os }}
-      if: matrix.os == 'windows-latest'
+  deploy-dev:
+    name: 'deploy to dev'
+
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
       shell: bash
       run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "Nodejs version: ${{ matrix.nodejs }}"
+
+  deploy-staging:
+    name: 'deploy to staging'
+
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+      run: |
+
+  deploy-live:
+    name: 'deploy to live'
+
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+      run: |
